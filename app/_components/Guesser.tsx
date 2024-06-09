@@ -1,14 +1,15 @@
 import { useState } from "react";
 import GuessInput from "./GuessInput";
+import Guess from "../_models/Guess";
 
 export default function Guesser() {
-  const guessProps1: PreviousGuessProps = {
+  const guessProps1: Guess = {
     make: "honda",
     model: "civic",
     makeIsCorrect: false,
     modelIsCorrect: false,
   };
-  const guessProps2: PreviousGuessProps = {
+  const guessProps2: Guess = {
     make: "toyota",
     model: "aqua",
     makeIsCorrect: true,
@@ -26,14 +27,7 @@ export default function Guesser() {
   );
 }
 
-export interface PreviousGuessProps {
-  make: string;
-  model: string;
-  makeIsCorrect: boolean;
-  modelIsCorrect: boolean;
-}
-
-export function PreviousGuess(props: PreviousGuessProps) {
+export function PreviousGuess(props: Guess) {
   const { make, model, makeIsCorrect, modelIsCorrect } = props;
   const bothAreIncorrect = !makeIsCorrect && !modelIsCorrect;
   const makeName = make[0].toUpperCase() + make.substring(1);
@@ -67,7 +61,7 @@ export function PreviousGuess(props: PreviousGuessProps) {
         <span
           style={
             modelIsCorrect
-              ? { textDecorationLine: correctTextDeco, color: correctColour }
+              ? { textDecorationLine: correctTextDeco, color: correctColour, fontWeight: 600 }
               : { textDecorationLine: wrongTextDeco, color: wrongColour }
           }
         >

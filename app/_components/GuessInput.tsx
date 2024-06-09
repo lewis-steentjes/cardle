@@ -1,9 +1,10 @@
 import { ChangeEvent, useState, FormEvent } from "react";
-import { PreviousGuessProps } from "./Guesser";
+import Guess from "../_models/Guess";
+import { checkGuess } from "../_utils/clientAPI";
 
 interface Props {
-  history: PreviousGuessProps[];
-  setHistory: (value: PreviousGuessProps[]) => void;
+  history: Guess[];
+  setHistory: (value: Guess[]) => void;
 }
 
 export default function GuessInput(props: Props) {
@@ -12,7 +13,7 @@ export default function GuessInput(props: Props) {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputText(event.target.value);
   };
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const entryData = inputText.toLowerCase().split(" ");
     if (entryData.length < 2) {
@@ -21,11 +22,12 @@ export default function GuessInput(props: Props) {
     } else {
       setGuessHint("");
     }
-    const make = entryData[0];
-    const model = entryData.slice(1, entryData.length).join(" ");
+    const make = entryData[0].trim();
+    const model = entryData.slice(1, entryData.length).join(" ").trim();
+    const guess = await checkGuess(make, model);
+    console.log(guess);
     const makeIsCorrect = true;
     const modelIsCorrect = false;
-    const guess = { make, model, makeIsCorrect, modelIsCorrect };
     const prevHistory = [...history];
     prevHistory.push(guess);
     setHistory(prevHistory);
