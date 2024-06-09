@@ -1,28 +1,21 @@
-import { useState } from "react";
+import { useState, useContext, createContext } from "react";
 import GuessInput from "./GuessInput";
 import Guess from "../_models/Guess";
 
-export default function Guesser() {
-  const guessProps1: Guess = {
-    make: "honda",
-    model: "civic",
-    makeIsCorrect: false,
-    modelIsCorrect: false,
-  };
-  const guessProps2: Guess = {
-    make: "toyota",
-    model: "aqua",
-    makeIsCorrect: true,
-    modelIsCorrect: false,
-  };
-  const [guessHistory, setGuessHistory] = useState([guessProps1, guessProps2]);
+interface GuesserProps {
+  history: Guess[];
+  setHistory: (value: Guess[]) => void;
+}
+
+export default function Guesser(props: GuesserProps) {
+  const { history, setHistory } = props;
 
   return (
     <div className="flex flex-col gap-1">
-      {guessHistory.map((guess, index) => (
+      {history.map((guess, index) => (
         <PreviousGuess {...guess} key={"guessK" + index} />
       ))}
-      <GuessInput history={guessHistory} setHistory={setGuessHistory} />
+      <GuessInput history={history} setHistory={setHistory} />
     </div>
   );
 }

@@ -32,15 +32,15 @@ export default function GuessInput(props: Props) {
       setGuessHint("");
     }
     console.log(guess);
-    const makeIsCorrect = true;
-    const modelIsCorrect = false;
+    // const makeIsCorrect = true;
+    // const modelIsCorrect = false;
     const prevHistory = [...history];
     prevHistory.push(guess);
     setHistory(prevHistory);
   };
   const { history, setHistory } = props;
   const latestGuess = history[history.length - 1];
-  const isWinner = latestGuess.makeIsCorrect && latestGuess.modelIsCorrect;
+  const isWinner = latestGuess?.makeIsCorrect && latestGuess?.modelIsCorrect;
   if (!isWinner)
     return (
       <div className="flex flex-col items-center">
