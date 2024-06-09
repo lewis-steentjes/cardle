@@ -25,6 +25,12 @@ export default function GuessInput(props: Props) {
     const make = entryData[0].trim();
     const model = entryData.slice(1, entryData.length).join(" ").trim();
     const guess = await checkGuess(make, model);
+    if (!guess) {
+      setGuessHint("Something went wrong..");
+      return;
+    } else {
+      setGuessHint("");
+    }
     console.log(guess);
     const makeIsCorrect = true;
     const modelIsCorrect = false;
