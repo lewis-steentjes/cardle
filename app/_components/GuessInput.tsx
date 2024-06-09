@@ -8,6 +8,7 @@ interface Props {
 
 export default function GuessInput(props: Props) {
   const [inputText, setInputText] = useState("");
+  const [guessHint, setGuessHint] = useState("");
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputText(event.target.value);
   };
@@ -15,7 +16,10 @@ export default function GuessInput(props: Props) {
     event.preventDefault();
     const entryData = inputText.toLowerCase().split(" ");
     if (entryData.length < 2) {
+      setGuessHint("Guess needs to be made of at least two words");
       return;
+    } else {
+      setGuessHint("");
     }
     const make = entryData[0];
     const model = entryData.slice(1, entryData.length).join(" ");
@@ -31,22 +35,23 @@ export default function GuessInput(props: Props) {
   const isWinner = latestGuess.makeIsCorrect && latestGuess.modelIsCorrect;
   if (!isWinner)
     return (
-      <div>
+      <div className="flex flex-col items-center">
         <form onSubmit={(event) => handleSubmit(event)} className="flex flex-row gap-1">
           <input
-            className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline"
             onChange={handleChange}
             value={inputText}
             placeholder='Guess, ex: "Ford GT"'
           ></input>
           <button
-            className="shadow appearance-none border border-black rounded w-24 py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline bg-slate-200 hover:bg-green-500"
+            className="shadow appearance-none border border-black rounded w-24 py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline bg-slate-200 hover:bg-green-500"
             onClick={() => {}}
             type="submit"
           >
             Guess!
           </button>
         </form>
+        <p className="w-64 text-center text-balance">{guessHint}</p>
       </div>
     );
 }
