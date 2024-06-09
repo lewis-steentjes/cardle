@@ -6,7 +6,6 @@ interface GuessCounterProps {
 export default function GuessCounter(props: GuessCounterProps) {
   const { guessNo, isFinished } = props;
   const maxAttempts = 6;
-  const attemptsRemaining = maxAttempts - guessNo;
   const wrongAnswerColour = "#FF0000";
   const correctAnswerColour = "#00FF00";
   const currentlyGuessingColour = "#DDDD00";
