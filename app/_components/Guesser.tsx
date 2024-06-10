@@ -11,7 +11,7 @@ export default function Guesser(props: GuesserProps) {
   const { history, setHistory } = props;
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col items-center gap-2">
       {history.map((guess, index) => (
         <PreviousGuess {...guess} key={"guessK" + index} />
       ))}
@@ -31,7 +31,7 @@ export function PreviousGuess(props: Guess) {
   const correctTextDeco = "none";
   const wrongTextDeco = "line-through";
   return (
-    <div className="flex flex-row items-center justify-center bg-slate-300 rounded h-8">
+    <div className="flex flex-row items-center justify-center bg-slate-300 rounded h-8 w-56 ">
       <div className="drop-shadow-[1px_1px_2px_rgba(0,0,0,0.4)]">
         <span
           style={
