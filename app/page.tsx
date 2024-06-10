@@ -4,13 +4,8 @@ import Game from "./_components/Game";
 
 export default function Home() {
   return (
-    <>
-      <main className="min-h-screen flex-col items-center justify-around bg-slate-400">
-        <TitleCard />
-        <div className="bg-red-300 flex flex-col items-center">
-          <Game />
-        </div>
-      </main>
-    </>
+    <main className="min-h-screen bg-slate-400 flex flex-col items-center">
+      <Game />
+    </main>
   );
 }

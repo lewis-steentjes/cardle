@@ -1,15 +1,24 @@
 interface GuessCounterProps {
   guessNo: number;
   isFinished: boolean;
+  setHintNo: (value: number) => void;
 }
 
 export default function GuessCounter(props: GuessCounterProps) {
-  const { guessNo, isFinished } = props;
+  const { guessNo, isFinished, setHintNo } = props;
   const maxAttempts = 6;
   const wrongAnswerColour = "#FF0000";
   const correctAnswerColour = "#00FF00";
   const currentlyGuessingColour = "#DDDD00";
   const notYetGuessedColour = "#94A3B8";
+
+  const handleClick = (index: number) => {
+    if (index > guessNo) {
+      return;
+    } else {
+      setHintNo(index);
+    }
+  };
 
   const blockColours = [];
   for (let i = 0; i < maxAttempts; i++) {
@@ -27,7 +36,9 @@ export default function GuessCounter(props: GuessCounterProps) {
   return (
     <div className="flex flex-row gap-1 pb-4">
       {blockColours.map((colour, index) => (
-        <GuessBlock colour={colour} key={"gb" + index} />
+        <button key={"gb" + index} onClick={() => handleClick(index)}>
+          <GuessBlock colour={colour} />
+        </button>
       ))}
     </div>
   );
@@ -38,5 +49,10 @@ interface GuessBlockProps {
 }
 function GuessBlock(props: GuessBlockProps) {
   const { colour } = props;
-  return <div className={"p-4 rounded-lg"} style={{ background: `${colour}` }}></div>;
+  return (
+    <div
+      className={"p-4 rounded-lg border-solid border-black border"}
+      style={{ background: `${colour}` }}
+    ></div>
+  );
 }

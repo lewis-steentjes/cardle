@@ -1,12 +1,13 @@
-import Image from "next/image";
 interface Props {
-  guessNumber?: number;
+  hintNo: number;
 }
 
 export default function HintPicture(props: Props) {
+  const { hintNo } = props;
   return (
-    <div className="pt-10 pl-10 pr-10 pb-5">
-      <Image
+    <div className="pt-4 pl-10 pr-10 pb-5 text-green-400">
+      {hintNo}
+      <img
         src="/2121798163.jpg"
         alt="image hint for the puzzle"
         width={600}

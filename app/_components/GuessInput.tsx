@@ -5,10 +5,11 @@ import { checkGuess } from "../_utils/clientAPI";
 interface Props {
   history: Guess[];
   setHistory: (value: Guess[]) => void;
+  setHintNo: (value: number) => void;
 }
 
 export default function GuessInput(props: Props) {
-  const { history, setHistory } = props;
+  const { history, setHistory, setHintNo } = props;
   const [inputText, setInputText] = useState("");
   const [guessHint, setGuessHint] = useState("");
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

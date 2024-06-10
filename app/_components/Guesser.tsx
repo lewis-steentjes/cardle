@@ -5,17 +5,18 @@ import Guess from "../_models/Guess";
 interface GuesserProps {
   history: Guess[];
   setHistory: (value: Guess[]) => void;
+  setHintNo: (value: number) => void;
 }
 
 export default function Guesser(props: GuesserProps) {
-  const { history, setHistory } = props;
+  const { history, setHistory, setHintNo } = props;
 
   return (
     <div className="flex flex-col items-center gap-2">
       {history.map((guess, index) => (
         <PreviousGuess {...guess} key={"guessK" + index} />
       ))}
-      <GuessInput history={history} setHistory={setHistory} />
+      <GuessInput history={history} setHistory={setHistory} setHintNo={setHintNo} />
     </div>
   );
 }

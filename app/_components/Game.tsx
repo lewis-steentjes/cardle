@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import TitleCard from "./TitleCard";
 import HintPicture from "./HintPicture";
 import GuessCounter from "./GuessCounter";
 import Guesser from "./Guesser";
@@ -20,6 +21,7 @@ export default function Game() {
   //   modelIsCorrect: false,
   // };
   const [history, setHistory] = useState([] as Guess[]);
+  const [hintNo, setHintNo] = useState(0);
   const latestEntry = history[history.length - 1];
   const maxAttempts = 6;
   const isFinished =
@@ -28,9 +30,10 @@ export default function Game() {
   if (isFinished) guessNo--;
   return (
     <div className="flex flex-col items-center bg-[#e8e8e8] max-w-screen-lg rounded-xl">
-      <HintPicture />
-      <GuessCounter guessNo={guessNo} isFinished={isFinished} />
-      <Guesser history={history} setHistory={setHistory} />
+      <TitleCard />
+      <HintPicture hintNo={hintNo} />
+      <GuessCounter guessNo={guessNo} isFinished={isFinished} setHintNo={setHintNo} />
+      <Guesser history={history} setHistory={setHistory} setHintNo={setHintNo} />
       <AdCard isFinished={isFinished} />
     </div>
   );
