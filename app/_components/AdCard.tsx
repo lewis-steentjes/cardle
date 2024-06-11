@@ -30,7 +30,7 @@ export default function AdCard(props: Props) {
   } else {
     // Game is finished, show ad for user to visit listing
     return (
-      <div className="flex flex-col items-center mt-2 mb-0">
+      <div className="flex flex-col items-center mt-2 mb-0 mx-2">
         <p className="text-black italic">{message}</p>
         <ListingCard {...adData} />
       </div>
@@ -49,7 +49,11 @@ function ListingCard(props: AdData) {
       href={listingURL}
       className="flex flex-row border-solid border-2 border-black mb-4 mt-2 max-w-lg  bg-[#f6f5f4] rounded-lg "
     >
-      <img src={listingThumb} className="w-1/3 object-fit rounded-l border-r-2 border-black"></img>
+      <img
+        src={listingThumb}
+        alt="thumbnail for the listed car"
+        className="w-1/3 object-cover rounded-l border-r-2 border-black"
+      ></img>
       <div className="flex flex-col w-full mr-4 justify-between ml-2">
         <div>
           <span className="font-semibold text-xl text-black">{listingTitle}</span>
