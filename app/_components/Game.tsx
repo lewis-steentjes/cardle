@@ -32,9 +32,11 @@ export default function Game() {
       <TitleCard />
       <HintPicture hintNo={hintNo} images={images} />
       <GuessCounter guessNo={guessNo} gameState={gameState} setHintNo={setHintNo} maxAttempts={maxAttempts} />
-      <Guesser history={history} setHistory={setHistory} setHintNo={setHintNo} />
       <GuessInput history={history} setHistory={setHistory} setHintNo={setHintNo} maxAttempts={maxAttempts} />
       <AdCard gameState={gameState} />
+
+      <Guesser history={history} setHistory={setHistory} setHintNo={setHintNo} />
+
       <GameWatcher gameState={gameState} setHintNo={setHintNo} />
     </div>
   );

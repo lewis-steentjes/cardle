@@ -12,7 +12,7 @@ export default function Guesser(props: GuesserProps) {
   const { history, setHistory, setHintNo } = props;
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center mb-2 gap-2">
       {history.map((guess, index) => (
         <PreviousGuess {...guess} key={"guessK" + index} />
       ))}

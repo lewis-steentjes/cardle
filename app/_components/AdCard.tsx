@@ -47,7 +47,7 @@ function ListingCard(props: AdData) {
   return (
     <a
       href={listingURL}
-      className="flex flex-row border-solid border-2 border-black mb-12 mt-2 max-w-lg  bg-[#f6f5f4] rounded-lg "
+      className="flex flex-row border-solid border-2 border-black mb-2 mt-2 max-w-lg  bg-[#f6f5f4] rounded-lg "
     >
       <img
         src={listingThumb}
