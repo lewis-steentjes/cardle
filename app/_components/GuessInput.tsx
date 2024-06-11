@@ -51,10 +51,10 @@ export default function GuessInput(props: Props) {
       <div className="flex flex-col items-center mt-2">
         <form onSubmit={(event) => handleSubmit(event)} className="flex flex-row gap-1">
           <input
-            className="shadow appearance-none border border-red-500 rounded w-56 py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border border-black rounded w-56 py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline"
             onChange={handleChange}
             value={inputText}
-            placeholder='Guess, ex: "Ford GT"'
+            placeholder='Guess, Ex: "Ford Focus"'
           ></input>
           <button
             className="shadow appearance-none border border-black rounded w-24 py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline bg-slate-200 hover:bg-green-500"
