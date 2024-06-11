@@ -6,15 +6,17 @@ interface Props {
   history: Guess[];
   setHistory: (value: Guess[]) => void;
   setHintNo: (value: number) => void;
+  maxAttempts: number;
 }
 
 export default function GuessInput(props: Props) {
-  const { history, setHistory, setHintNo } = props;
+  const { history, setHistory, setHintNo, maxAttempts } = props;
   const [inputText, setInputText] = useState("");
   const [guessHint, setGuessHint] = useState("");
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputText(event.target.value);
   };
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const entryData = inputText.toLowerCase().split(" ");
@@ -34,21 +36,19 @@ export default function GuessInput(props: Props) {
       setGuessHint("");
     }
     console.log(guess);
-    // const makeIsCorrect = true;
-    // const modelIsCorrect = false;
     const prevHistory = [...history];
     prevHistory.push(guess);
     setHistory(prevHistory);
+    setHintNo(history.length + 1);
   };
 
   const latestGuess = history[history.length - 1];
-  const maxAttempts = 6;
   const isWinner = latestGuess?.makeIsCorrect && latestGuess?.modelIsCorrect;
   const isLoser = !isWinner && history.length >= maxAttempts;
   if (!isWinner && !isLoser)
     // Play game]
     return (
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mt-2">
         <form onSubmit={(event) => handleSubmit(event)} className="flex flex-row gap-1">
           <input
             className="shadow appearance-none border border-red-500 rounded w-56 py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline"
@@ -70,7 +70,7 @@ export default function GuessInput(props: Props) {
   if (isWinner) {
     // Game won, do confetti
     return (
-      <div className="flex flex-row items-center justify-center rounded h-8 w-56 bg-green-300">
+      <div className="flex flex-row items-center justify-center rounded h-8 w-56 bg-green-300 mt-2">
         <div className="drop-shadow-[1px_1px_2px_rgba(0,0,0,0.4)] text-black">You Win!</div>
       </div>
     );
@@ -78,7 +78,7 @@ export default function GuessInput(props: Props) {
   if (isLoser) {
     // Game lost, do something
     return (
-      <div className="flex flex-row items-center justify-center rounded h-8 w-56 bg-red-400">
+      <div className="flex flex-row items-center justify-center rounded h-8 w-56 bg-red-400 mt-2">
         <div className="drop-shadow-[1px_1px_2px_rgba(0,0,0,0.4)] text-black">You Lose.</div>
       </div>
     );

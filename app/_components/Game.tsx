@@ -6,35 +6,37 @@ import GuessCounter from "./GuessCounter";
 import Guesser from "./Guesser";
 import Guess from "../_models/Guess";
 import AdCard from "./AdCard";
+import GuessInput from "./GuessInput";
+import GameWatcher from "./GameWatcher";
 
 export default function Game() {
-  // const guessProps1: Guess = {
-  //   make: "honda",
-  //   model: "civic",
-  //   makeIsCorrect: false,
-  //   modelIsCorrect: false,
-  // };
-  // const guessProps2: Guess = {
-  //   make: "toyota",
-  //   model: "aqua",
-  //   makeIsCorrect: true,
-  //   modelIsCorrect: false,
-  // };
   const [history, setHistory] = useState([] as Guess[]);
   const [hintNo, setHintNo] = useState(0);
-  const latestEntry = history[history.length - 1];
   const maxAttempts = 6;
-  const isFinished =
-    (latestEntry?.makeIsCorrect && latestEntry?.modelIsCorrect) || history.length == maxAttempts;
+  const gameState = analyseGameState(history, maxAttempts);
+  const isFinished = gameState == "GameWon" || gameState == "GameLost";
   let guessNo = history.length;
-  if (isFinished) guessNo--;
+  if (isFinished) guessNo = history.length - 1;
   return (
     <div className="flex flex-col items-center bg-[#e8e8e8] max-w-screen-lg rounded-xl">
       <TitleCard />
       <HintPicture hintNo={hintNo} />
-      <GuessCounter guessNo={guessNo} isFinished={isFinished} setHintNo={setHintNo} />
+      <GuessCounter guessNo={guessNo} gameState={gameState} setHintNo={setHintNo} maxAttempts={maxAttempts} />
       <Guesser history={history} setHistory={setHistory} setHintNo={setHintNo} />
-      <AdCard isFinished={isFinished} />
+      <GuessInput history={history} setHistory={setHistory} setHintNo={setHintNo} maxAttempts={maxAttempts} />
+      <AdCard gameState={gameState} />
+      <GameWatcher gameState={gameState} setHintNo={setHintNo} />
     </div>
   );
+}
+
+function analyseGameState(history: Guess[], maxAttempts: number) {
+  const latestGuess = history[history.length - 1];
+  if (latestGuess?.makeIsCorrect && latestGuess?.modelIsCorrect) {
+    return "GameWon";
+  } else if (history.length == maxAttempts) {
+    return "GameLost";
+  } else {
+    return "GameRunning";
+  }
 }

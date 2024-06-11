@@ -16,7 +16,6 @@ export default function Guesser(props: GuesserProps) {
       {history.map((guess, index) => (
         <PreviousGuess {...guess} key={"guessK" + index} />
       ))}
-      <GuessInput history={history} setHistory={setHistory} setHintNo={setHintNo} />
     </div>
   );
 }

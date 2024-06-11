@@ -1,18 +1,24 @@
 interface GuessCounterProps {
   guessNo: number;
-  isFinished: boolean;
+  gameState: string;
   setHintNo: (value: number) => void;
+  maxAttempts: number;
 }
 
 export default function GuessCounter(props: GuessCounterProps) {
-  const { guessNo, isFinished, setHintNo } = props;
-  const maxAttempts = 6;
+  const { guessNo, gameState, setHintNo, maxAttempts } = props;
+  const isFinished = gameState == "GameWon" || gameState == "GameLost";
   const wrongAnswerColour = "#FF0000";
   const correctAnswerColour = "#00FF00";
   const currentlyGuessingColour = "#DDDD00";
   const notYetGuessedColour = "#94A3B8";
 
   const handleClick = (index: number) => {
+    console.log(index, guessNo);
+    if (index == guessNo && isFinished) {
+      setHintNo(-1);
+      return;
+    }
     if (index > guessNo) {
       return;
     } else {

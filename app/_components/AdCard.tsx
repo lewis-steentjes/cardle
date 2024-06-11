@@ -1,9 +1,13 @@
+import Guess from "../_models/Guess";
+
 interface Props {
-  isFinished: boolean;
+  gameState: string;
 }
 
 export default function AdCard(props: Props) {
-  const { isFinished } = props;
+  const { gameState } = props;
+  const isFinished = gameState == "GameWon" || gameState == "GameLost";
+
   const adData: AdData = {
     listingURL: "https://www.trademe.co.nz/a/motors/cars/toyota/celica/listing/4730014056",
     listingThumb: "https://trademe.tmcdn.co.nz/photoserver/full/2121798163.jpg",
@@ -12,12 +16,25 @@ export default function AdCard(props: Props) {
     listingPrice: 22000,
   };
 
+  let message = "";
+  if (gameState == "GameWon") {
+    message = "Now go win the car 😎";
+  }
+  if (gameState == "GameLost") {
+    message = "😭 Go win the car instead ";
+  }
+
   if (!isFinished) {
     // Game is still running, don't show ad.'
     return <div className="my-2"></div>;
   } else {
     // Game is finished, show ad for user to visit listing
-    return <ListingCard {...adData} />;
+    return (
+      <div className="flex flex-col items-center mt-2 mb-0">
+        <p className="text-black italic">{message}</p>
+        <ListingCard {...adData} />
+      </div>
+    );
   }
 }
 
@@ -30,7 +47,7 @@ function ListingCard(props: AdData) {
   return (
     <a
       href={listingURL}
-      className="flex flex-row border-solid border-2 border-black my-4 max-w-lg  bg-[#f6f5f4] rounded-lg "
+      className="flex flex-row border-solid border-2 border-black mb-4 mt-2 max-w-lg  bg-[#f6f5f4] rounded-lg "
     >
       <img src={listingThumb} className="w-1/3 object-fit rounded-l border-r-2 border-black"></img>
       <div className="flex flex-col w-full mr-4 justify-between ml-2">
@@ -45,34 +62,6 @@ function ListingCard(props: AdData) {
   );
 }
 
-// <div
-//   className="flex flex-row rounded-lg w-[20rem] h-[7.5rem] bg-info border-solid border-2 border-content-muted"
-//   style={{ display: infoWindowOpen ? "flex" : "none" }}
-//   onClick={() => window.open(listingURL, "_blank")}
-// >
-//   {props.details.PictureHref ? (
-//     <img
-//       src={props.details.PictureHref}
-//       alt="Image of Property"
-//       className="ml-0 w-2/5 object-cover rounded-l-md border-r-2 border-primary"
-//     />
-//   ) : (
-//     <img
-//       src={"/no-image-found4.jpg"}
-//       alt="No Property Found"
-//       className="ml-0 w-2/5 object-cover rounded-l-lg"
-//     />
-//   )}
-//   <div className="flex flex-col justify-around items-center w-3/5">
-//     <div className="text-black text-sm text-right">Available {props.details.AvailableFrom} </div>
-//     <div className="grid grid-cols-2 justify-items-center gap-2">
-//       <div className="text-black content-center">🛏️ {props.details.Bedrooms} </div>
-//       <div className="text-black">🐈 {props.details.PetsOkay ? "✅" : "❌"} </div>
-//       <div className="text-black">🛁 {props.details.Bathrooms} </div>
-//       <div className="text-black">🚬 {props.details.SmokersOkay ? "✅" : "❌"} </div>
-//     </div>
-//   </div>
-// </div>
 interface AdData {
   listingURL: string;
   listingThumb: string;
