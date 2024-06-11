@@ -60,7 +60,7 @@ export default function GuessInput(props: Props) {
             placeholder='Guess, Ex: "Ford Focus"'
           ></input>
           <button
-            className="shadow appearance-none border border-black rounded w-24 py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline bg-slate-200 hover:bg-green-500"
+            className="shadow appearance-none border border-black rounded w-24 py-2 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline bg-slate-200 hover:bg-green-500"
             onClick={() => {}}
             type="submit"
           >
