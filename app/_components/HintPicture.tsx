@@ -10,7 +10,7 @@ export default function HintPicture(props: Props) {
 
   return (
     <div className="pt-4 pl-10 pr-10 pb-5 text-green-400">
-      <div className="bg-purple-300 overflow-clip rounded-lg  border-solid border-black border-2 mt-4">
+      <div className="overflow-clip rounded-lg  border-solid border-black border-2 mt-4">
         <PuzzlePicture imageSrc={imageSrc} hintNo={hintNo} />
       </div>
     </div>

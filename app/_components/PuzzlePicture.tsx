@@ -13,7 +13,11 @@ export default function PuzzlePicture(props: Props) {
           src={imageSrc}
           alt="image hint for the puzzle"
           width={800}
-          style={{ transform: "scale(4, 4) translateX(-12%) translateY(-25%)", filter: "blur(1px)" }}
+          style={{
+            transform: "scale(4, 4) translateX(-12%) translateY(-25%)",
+            filter: "blur(1px)",
+            pointerEvents: "none",
+          }}
         />
       );
       break;
@@ -23,7 +27,11 @@ export default function PuzzlePicture(props: Props) {
           src={imageSrc}
           alt="image hint for the puzzle"
           width={800}
-          style={{ transform: "scale(4, 4) translateX(30%) translateY(25%)", filter: "blur(1px)" }}
+          style={{
+            transform: "scale(4, 4) translateX(30%) translateY(25%)",
+            filter: "blur(1px)",
+            pointerEvents: "none",
+          }}
         />
       );
       break;
@@ -33,7 +41,11 @@ export default function PuzzlePicture(props: Props) {
           src={imageSrc}
           alt="image hint for the puzzle"
           width={800}
-          style={{ transform: "scale(3, 3) translateX(30%) translateY(0%)", filter: "blur(1px)" }}
+          style={{
+            transform: "scale(3, 3) translateX(30%) translateY(0%)",
+            filter: "blur(1px)",
+            pointerEvents: "none",
+          }}
         />
       );
       break;
@@ -43,7 +55,11 @@ export default function PuzzlePicture(props: Props) {
           src={imageSrc}
           alt="image hint for the puzzle"
           width={800}
-          style={{ transform: "scale(4.5, 4.5) translateX(-30%) translateY(-5%)", filter: "blur(1px)" }}
+          style={{
+            transform: "scale(4.5, 4.5) translateX(-30%) translateY(-5%)",
+            filter: "blur(1px)",
+            pointerEvents: "none",
+          }}
         />
       );
       break;
@@ -53,7 +69,11 @@ export default function PuzzlePicture(props: Props) {
           src={imageSrc}
           alt="image hint for the puzzle"
           width={800}
-          style={{ transform: "scale(4, 4) translateX(0%) translateY(15%)", filter: "blur(1px)" }}
+          style={{
+            transform: "scale(4, 4) translateX(0%) translateY(15%)",
+            filter: "blur(1px)",
+            pointerEvents: "none",
+          }}
         />
       );
       break;
@@ -63,13 +83,19 @@ export default function PuzzlePicture(props: Props) {
           src={imageSrc}
           alt="image hint for the puzzle"
           width={800}
-          style={{ transform: "scale(1.1, 1.1) translateX(0) translateY(0) ", filter: "blur(4px)" }}
+          style={{
+            transform: "scale(1.1, 1.1) translateX(0) translateY(0) ",
+            filter: "blur(4px)",
+            pointerEvents: "none",
+          }}
         />
       );
       break;
 
     default:
-      return <img src={imageSrc} alt="image hint for the puzzle" width={800} />;
+      return (
+        <img src={imageSrc} alt="image hint for the puzzle" width={800} style={{ pointerEvents: "none" }} />
+      );
       break;
   }
 }
