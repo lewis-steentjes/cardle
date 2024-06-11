@@ -11,6 +11,7 @@ interface Props {
 
 export default function GuessInput(props: Props) {
   const { history, setHistory, setHintNo, maxAttempts } = props;
+  const [guessWord, setGuessword] = useState("Guess!");
   const [inputText, setInputText] = useState("");
   const [guessHint, setGuessHint] = useState("");
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -19,6 +20,7 @@ export default function GuessInput(props: Props) {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setGuessword("Guessing...");
     const entryData = inputText.toLowerCase().split(" ");
     if (entryData.length < 2) {
       setGuessHint("Guess needs to be made of at least two words");
@@ -40,6 +42,7 @@ export default function GuessInput(props: Props) {
     prevHistory.push(guess);
     setHistory(prevHistory);
     setHintNo(history.length + 1);
+    setGuessword("Guess!");
   };
 
   const latestGuess = history[history.length - 1];
@@ -61,7 +64,7 @@ export default function GuessInput(props: Props) {
             onClick={() => {}}
             type="submit"
           >
-            Guess!
+            {guessWord}
           </button>
         </form>
         <p className="w-64 text-center text-balance text-black">{guessHint}</p>
