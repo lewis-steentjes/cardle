@@ -64,7 +64,7 @@ export default function GuessInput(props: Props) {
             Guess!
           </button>
         </form>
-        <p className="w-64 text-center text-balance">{guessHint}</p>
+        <p className="w-64 text-center text-balance text-black">{guessHint}</p>
       </div>
     );
   if (isWinner) {
