@@ -2,8 +2,6 @@ import Guess from "../_models/Guess";
 
 interface GuesserProps {
   history: Guess[];
-  setHistory: (value: Guess[]) => void;
-  setHintNo: (value: number) => void;
   maxAttempts: number;
 }
 

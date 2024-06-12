@@ -34,7 +34,7 @@ export default function Game() {
       <GuessCounter guessNo={guessNo} gameState={gameState} setHintNo={setHintNo} maxAttempts={maxAttempts} />
       <GuessInput history={history} setHistory={setHistory} setHintNo={setHintNo} maxAttempts={maxAttempts} />
       <AdCard gameState={gameState} />
-      <Guesser history={history} setHistory={setHistory} setHintNo={setHintNo} maxAttempts={maxAttempts} />
+      <Guesser history={history} maxAttempts={maxAttempts} />
       <GameWatcher gameState={gameState} setHintNo={setHintNo} />
     </div>
   );
