@@ -24,18 +24,22 @@ export default function AdCard(props: Props) {
     message = "😭 Go win the car instead ";
   }
 
+  let adCardHeight = "150px";
   if (!isFinished) {
     // Game is still running, don't show ad.'
-    return <div className="my-2"></div>;
-  } else {
-    // Game is finished, show ad for user to visit listing
-    return (
-      <div className="flex flex-col items-center mt-2 mb-0 mx-2">
-        <p className="text-black italic">{message}</p>
-        <ListingCard {...adData} />
-      </div>
-    );
+    adCardHeight = "0px";
   }
+  // Game is finished, show ad for user to visit listing
+  return (
+    <div
+      className="flex flex-col items-center mt-2 mb-2 mx-2 overflow-clip ease-in-out duration-1000"
+      style={{ height: adCardHeight }}
+      key="adCard"
+    >
+      <p className="text-black italic">{message}</p>
+      <ListingCard {...adData} />
+    </div>
+  );
 }
 
 function ListingCard(props: AdData) {
@@ -47,7 +51,7 @@ function ListingCard(props: AdData) {
   return (
     <a
       href={listingURL}
-      className="flex flex-row border-solid border-2 border-black mb-2 mt-2 max-w-lg  bg-[#f6f5f4] rounded-lg "
+      className="flex flex-row border-solid border-2 border-black mb-4 mt-2 max-w-lg  bg-[#f6f5f4] rounded-lg "
     >
       <img
         src={listingThumb}
