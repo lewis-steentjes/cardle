@@ -1,5 +1,3 @@
-import { useState, useContext, createContext } from "react";
-import GuessInput from "./GuessInput";
 import Guess from "../_models/Guess";
 
 interface GuesserProps {
@@ -10,11 +8,15 @@ interface GuesserProps {
 }
 
 export default function Guesser(props: GuesserProps) {
-  const { history, setHistory, setHintNo, maxAttempts } = props;
-  const numberOfGuesses = history.length;
+  const { history, maxAttempts } = props;
   const renderArray = [...history];
   for (let i = history.length; i < maxAttempts; i++) {
-    renderArray.push({ make: "boot", model: "toot", makeIsCorrect: false, modelIsCorrect: false });
+    renderArray.push({
+      make: "secretpassphrase",
+      model: "toot",
+      makeIsCorrect: false,
+      modelIsCorrect: false,
+    });
   }
   return (
     <div className="flex flex-col items-center mb-2">
@@ -28,7 +30,8 @@ export default function Guesser(props: GuesserProps) {
 export function PreviousGuess(props: Guess) {
   const { make, model, makeIsCorrect, modelIsCorrect } = props;
 
-  if (make == "boot") {
+  if (make == "secretpassphrase") {
+    //TO DO - Implement a better solution than coding the make as "secretpassphrase"
     return <div className="w-56 h-0 bg-orange-400 text-transparent"></div>;
   }
 
