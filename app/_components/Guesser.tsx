@@ -10,10 +10,15 @@ interface GuesserProps {
 
 export default function Guesser(props: GuesserProps) {
   const { history, setHistory, setHintNo } = props;
-
+  const numberOfGuesses = history.length;
+  const maxAttempts = 6;
+  const renderArray = [...history];
+  for (let i = history.length; i < maxAttempts; i++) {
+    renderArray.push({ make: "boot", model: "toot", makeIsCorrect: false, modelIsCorrect: false });
+  }
   return (
-    <div className="flex flex-col items-center mb-2 gap-2">
-      {history.map((guess, index) => (
+    <div className="flex flex-col items-center mb-2">
+      {renderArray.reverse().map((guess, index) => (
         <PreviousGuess {...guess} key={"guessK" + index} />
       ))}
     </div>
@@ -22,6 +27,11 @@ export default function Guesser(props: GuesserProps) {
 
 export function PreviousGuess(props: Guess) {
   const { make, model, makeIsCorrect, modelIsCorrect } = props;
+
+  if (make == "boot") {
+    return <div className="w-56 h-0 bg-orange-400 text-transparent"></div>;
+  }
+
   const bothAreIncorrect = !makeIsCorrect && !modelIsCorrect;
   const makeName = make[0].toUpperCase() + make.substring(1);
   const modelName = model[0].toUpperCase() + model.substring(1);
@@ -31,7 +41,7 @@ export function PreviousGuess(props: Guess) {
   const correctTextDeco = "none";
   const wrongTextDeco = "line-through";
   return (
-    <div className="flex flex-row items-center justify-center bg-slate-300 rounded h-8 w-56 ">
+    <div className="flex flex-row items-center justify-center bg-slate-300 rounded h-8 w-56 mb-2 overflow-clip ease-in-out duration-500 ">
       <div className="drop-shadow-[1px_1px_2px_rgba(0,0,0,0.4)]">
         <span
           style={
