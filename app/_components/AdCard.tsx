@@ -24,7 +24,7 @@ export default function AdCard(props: Props) {
     message = "😭 Go win the car instead ";
   }
 
-  let adCardHeight = "150px";
+  let adCardHeight = "9.75rem";
   if (!isFinished) {
     // Game is still running, don't show ad.'
     adCardHeight = "0px";
@@ -32,7 +32,7 @@ export default function AdCard(props: Props) {
   // Game is finished, show ad for user to visit listing
   return (
     <div
-      className="flex flex-col items-center mt-2 mb-2 mx-2 overflow-clip ease-in-out duration-1000"
+      className="flex flex-col items-center mt-2 mb-2 mx-2 overflow-clip h-5 ease-in-out duration-1000"
       style={{ height: adCardHeight }}
       key="adCard"
     >
