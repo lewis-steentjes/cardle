@@ -6,12 +6,12 @@ interface GuesserProps {
   history: Guess[];
   setHistory: (value: Guess[]) => void;
   setHintNo: (value: number) => void;
+  maxAttempts: number;
 }
 
 export default function Guesser(props: GuesserProps) {
-  const { history, setHistory, setHintNo } = props;
+  const { history, setHistory, setHintNo, maxAttempts } = props;
   const numberOfGuesses = history.length;
-  const maxAttempts = 6;
   const renderArray = [...history];
   for (let i = history.length; i < maxAttempts; i++) {
     renderArray.push({ make: "boot", model: "toot", makeIsCorrect: false, modelIsCorrect: false });
